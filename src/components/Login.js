@@ -17,7 +17,7 @@ export default function Login() {
     e.preventDefault();
     const response = await fetch('/.netlify/functions/register', {
         method: 'POST',
-        body: JSON.stringify({email,password}),
+        body: JSON.stringify(data),
         headers: {'Content-Type':'application/json'},
       });
       if (response.status === 200) {
