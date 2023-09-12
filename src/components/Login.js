@@ -1,5 +1,5 @@
-import React, { useState,useContext} from "react";
-import { Navigate} from "react-router-dom";
+import React, { useState} from "react";
+// import { Navigate} from "react-router-dom";
 // import axios from "axios";
 // import {toast} from 'react-hot-toast';
 // import { UserContext } from "../context/userContext";
@@ -15,15 +15,16 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // axios.post('/login',data).then(response => {
-    //   console.log('Response', response.data);
-    //   setUser(response.data);
-    //   setRedirect(true);
-    // }).catch(error => {
-    //   console.error('Error',error);
-    //   toast.error("Invalid Credentials");
-    // });
-    
+    const response = await fetch('/.netlify/functions/register', {
+        method: 'POST',
+        body: JSON.stringify({username,password}),
+        headers: {'Content-Type':'application/json'},
+      });
+      if (response.status === 200) {
+        alert('registration successful');
+      } else {
+        alert('registration failed');
+      }
   }
 
 //   if(redirect){
